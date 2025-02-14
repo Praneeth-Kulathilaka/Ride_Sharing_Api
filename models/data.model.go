@@ -1,15 +1,23 @@
 package models
 
+type RideStatus string
+
+const (
+	StatusActive RideStatus = "active"
+	StatusPending RideStatus = "pending"
+	StatusCompleted RideStatus = "completed"
+)
 type Rides struct {
-	RideId          int     `gorm:"primaryKey" json:"ride_id"`
-	VehicleType     string  `json:"vehicle_type"`
-	PickupLocation  string  `json:"pickup_location"`
-	DropoffLocation string  `json:"dropoff_location"`
-	Distance        float64 `json:"distance"`
-	EstimatedFare   float64 `json:"estimated_fare"`
-	PaymentId       string  `json:"payment_id"`
-	CustomerId      int     `gorm:"index" json:"customer_id"`
-	RiderId         int     `gorm:"index" json:"rider_id"`
+	RideId          int     	`gorm:"primaryKey" json:"ride_id"`
+	VehicleType     string  	`json:"vehicle_type"`
+	PickupLocation  string  	`json:"pickup_location"`
+	DropoffLocation string  	`json:"dropoff_location"`
+	Distance        float64 	`json:"distance"`
+	EstimatedFare   float64 	`json:"estimated_fare"`
+	PaymentId       string  	`gorm:"default:'pending'" json:"payment_id"`
+	Status 			RideStatus 	`gorm:"type:VARCHAR(20); default:'pending'" json:"status"`
+	CustomerId      int     	`gorm:"index" json:"customer_id"`
+	RiderId         *int     	`gorm:"index" json:"rider_id"`
 }
 
 type Customers struct {

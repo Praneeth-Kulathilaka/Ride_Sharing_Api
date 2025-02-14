@@ -23,4 +23,5 @@ func Migrate() {
 	if err != nil {
 		log.Println("Error migrating rider tables", err)
 	}
+	log.Println("All the tables successfully migrated")
 }

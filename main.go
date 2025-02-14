@@ -11,6 +11,7 @@ func main() {
 	database.ConnectDB()
 
 	r := routers.SetRoutes()
+	database.Migrate()
 	
 	
 	port := ":8080"
